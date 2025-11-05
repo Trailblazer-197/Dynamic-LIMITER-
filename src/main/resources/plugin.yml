@@ -1,0 +1,11 @@
+name: DynamicLimiter
+version: 1.0.0
+main: com.trailblazer19705135.limiterplus.LimiterPlus
+api-version: 1.21
+authors: [trailblazer_197_05135]
+description: A dynamic resource manager for Minecraft servers that enforces entity and block limits asynchronously, adapting to TPS and player counts to prevent lag without performance hits.
+commands:
+  limiter:
+    description: Admin commands for DynamicLimiter
+    usage: /<command> [check|scan|reload|info] [args]
+    permission: dynamiclimiterplus.admin

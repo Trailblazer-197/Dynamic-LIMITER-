@@ -1,0 +1,71 @@
+# Dynamic LIMITER+ Configuration File
+# Version: 1.0
+# Description: This configuration file allows server administrators to fine-tune entity and block limits,
+# adaptive scaling based on server performance, scanning intervals, and actions taken when limits are exceeded.
+# All limits are applied per player unless specified otherwise. Use 'world' or 'global' for broader scopes.
+# Restart or reload the plugin after changes.
+
+# Entity and Block Limits
+# Define the maximum number of entities or blocks allowed per player.
+# Entities: Mob types (e.g., ZOMBIE, CREEPER), NPCs (e.g., VILLAGER, ARMOR_STAND)
+# Blocks: Redstone components (e.g., HOPPER, PISTON), observers, etc.
+# Example: Set hopper to 50 for more generous limits.
+limits:
+  # Block Limits
+  HOPPER: 50          # Maximum hoppers per player
+  PISTON: 50          # Maximum pistons per player (sticky and normal)
+  OBSERVER: 50        # Maximum observers per player
+  DISPENSER: 50       # Maximum dispensers/droppers per player
+  REDSTONE_WIRE: 200  # Maximum redstone dust placements per player
+  # Entity Limits
+  ZOMBIE: 100         # Maximum zombies per player
+  VILLAGER: 20        # Maximum villagers per player
+  CREEPER: 50         # Maximum creepers per player
+  ARMOR_STAND: 10     # Maximum armor stands per player
+  ITEM_FRAME: 15      # Maximum item frames per player
+  BOAT: 15             # Maximum boats per player
+  MINECART: 25         # Maximum minecarts per player
+  LEASH_KNOT: 10       # Maximum leash knots per player
+  ARROW: 200           # Maximum arrows/projectiles per player
+  FALLING_BLOCK: 50    # Maximum falling blocks per player
+  ITEM: 300            # Maximum dropped items per player
+  EXPERIENCE_ORB: 150  # Maximum experience orbs per player
+  AREA_EFFECT_CLOUD: 20 # Maximum area effect clouds per player
+  FISHING_HOOK: 5      # Maximum fishing hooks per player
+  LIGHTNING: 10        # Maximum lightning entities per player
+
+# Adaptive Scaling
+# Automatically reduce limits during performance issues to prevent lag.
+adaptive:
+  enabled: true                       # Enable adaptive scaling
+  tps-threshold: 18.0                 # TPS below this triggers scaling
+  player-count-threshold: 50          # Player count above this also triggers scaling (optional)
+  scale-factor: 0.75                  # Reduce limits to this percentage during lag
+  scale-duration: 300                 # Duration in seconds to maintain scaled limits after recovery
+
+# Scanning Configuration
+# Controls how often the server scans for entities and blocks asynchronously.
+scan:
+  interval: 6000      # Scan interval in ticks (6000 ticks = 5 minutes)
+  async: true         # Run scans asynchronously to avoid lag
+  worlds:             # Specific worlds to scan (leave empty for all worlds)
+    - world
+    - world_nether
+    - world_the_end
+
+# Actions on Limit Exceedance
+# Define what happens when a player exceeds their limits.
+actions:
+  block-placement: cancel              # 'cancel' to block placement, 'warn' to notify only
+  entity-spawn: cancel                # 'cancel' to prevent spawn, 'remove' to delete existing, 'warn' to notify
+  removal-mode: selective             # 'selective' removes oldest first, 'all' removes all excess
+  warn-message: "&cYou have exceeded the limit for %type% (%current%/%limit%)."  # Custom warning message
+  log: true                           # Log exceedances to console
+  log-level: INFO                     # Logging level: INFO, WARN, ERROR
+
+# Advanced Settings
+# For fine-tuning performance and behavior.
+advanced:
+  cache-expiry: 300   # Cache expiry in seconds for scanned data
+  max-scan-threads: 2 # Maximum threads for async scanning
+  debug-mode: false   # Enable debug logging for troubleshooting
