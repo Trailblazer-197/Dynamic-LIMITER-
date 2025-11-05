@@ -62,3 +62,6 @@ Simple, readable YAML setup — no scripts, dependencies, or performance trade-o
 
 **_Because lag prevention shouldn’t be about deleting — it should be about managing intelligently.
 LIMITER+ brings modern, dynamic control to server performance — no clutter, no overkill, just precision._**
+
+## For BEST PERFORMANCE
+Use with [Dynamic PERFORMANCE+](https://modrinth.com/project/dynamic-performance+).
